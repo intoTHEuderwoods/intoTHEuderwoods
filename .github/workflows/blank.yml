@@ -1,0 +1,30 @@
+name: Game Development Workflow
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14  # Adjust the Node.js version as needed
+
+    - name: Install dependencies
+      run: npm install  # Modify as per your project setup
+
+    - name: Build and Test
+      run: npm run build  # Modify for your specific build process
